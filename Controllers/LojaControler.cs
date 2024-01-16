@@ -64,7 +64,7 @@ namespace projeto.Controllers
         }
 
         //Retorna todos os Usuarios cadastrados
-        [HttpGet("Usuarios")]
+        [HttpGet("Usuarios/MostrarUsuarios")]
         public IActionResult getTodosUsuarios()
         {
             try
@@ -83,7 +83,7 @@ namespace projeto.Controllers
         }
 
         //Retorna todos os Pedidos cadastrados
-        [HttpGet("TodosPedidos")]
+        [HttpGet("Pedido/MostrarTodosPedidos")]
         public IActionResult getTodosPedidos()
         {
             try
@@ -102,7 +102,7 @@ namespace projeto.Controllers
         }
 
         //Retorna todos os itens diponiveis para a venda
-        [HttpGet("ItensAVenda")]
+        [HttpGet("Itens/MostrarItensAVenda")]
         public IActionResult getTodosItensAVenda()
         {
             try
@@ -125,7 +125,7 @@ namespace projeto.Controllers
         
 
         //Retorna o usuarios com o CPF informado
-        [HttpGet("UsuarioCPF/{cpfUsuarios}")]
+        [HttpGet("Usuarios/MostrarUsuariosCPF/{cpfUsuarios}")]
         public IActionResult getUsuarioCPF(string cpfUsuarios)
         {
             var usuarioEncontrado = usuarios.FirstOrDefault(p => p.CPF == cpfUsuarios);
@@ -139,7 +139,7 @@ namespace projeto.Controllers
         }
 
         //Retorna todos os pedidos realizados pelo Usuario com o CPF informado
-        [HttpGet("ListaDePedidosPorCPF/{cpfPedidos}")]
+        [HttpGet("Pedido/MostrarListaDePedidosPorCPF/{cpfPedidos}")]
         public IActionResult GetListaPedidos(string cpfPedidos)
         {
             try
@@ -169,7 +169,7 @@ namespace projeto.Controllers
         }
 
 
-        [HttpGet("ObterItensDoPedido/{id}")]
+        [HttpGet("Pedido/MostrarItensDoPedido/{id}")]
         public IActionResult ObterItensDoPedido(string id)
         {
             try
@@ -193,7 +193,7 @@ namespace projeto.Controllers
         }
 
         
-        [HttpPost("CriarUsuario/{novoUsuario}")]
+        [HttpPost("Usuario/CriarUsuario/{novoUsuario}")]
         public IActionResult InserirUsuario(Usuario novoUsuario)
         {
             try
@@ -277,12 +277,8 @@ namespace projeto.Controllers
             }
         }
 
-        [HttpPost("CriarPedido/{cpfUsuario}/{id}/{itemDesejado}/{qtdDesejada}")]
-        public IActionResult InserirPedido(
-            [Required] string id,
-            [Required] int qtdDesejada,
-            [Required] string cpfUsuario,
-            [Required] string itemDesejado)
+        [HttpPost("Pedido/CriarPedido/{cpfUsuario}/{id}/{itemDesejado}/{qtdDesejada}")]
+        public IActionResult InserirPedido([Required] string id, [Required] int qtdDesejada, [Required] string cpfUsuario, [Required] string itemDesejado)
         {
             try
             {
@@ -328,7 +324,7 @@ namespace projeto.Controllers
             }
         }
 
-        [HttpPost("CriarItem/{nomeItem}/{qtdDeEstoque}")]
+        [HttpPost("Item/CriarItem/{nomeItem}/{qtdDeEstoque}")]
         public IActionResult InserirItem([Required] string nomeItem, [Required] int qtdDeEstoque)
         {
             try
@@ -371,7 +367,7 @@ namespace projeto.Controllers
             }
         }
 
-        [HttpPut("AtualizarUsuario/{cpf}/{cpfNovo}/{nome}")]
+        [HttpPut("Usuario/AtualizarUsuario/{cpf}/{cpfNovo}/{nome}")]
         public IActionResult AtualizarUsuario([Required] string cpf, [Required] string nome, [Required] string cpfNovo)
         {
             try
@@ -421,7 +417,7 @@ namespace projeto.Controllers
         }
 
 
-        [HttpPut("AtualizaPedido/{id}/{idAtualizado}/{itemAtualizado}/{qtdItensAtualizada}")]
+        [HttpPut("Pedido/AtualizaPedido/{id}/{idAtualizado}/{itemAtualizado}/{qtdItensAtualizada}")]
         public IActionResult AtualizarPedido(string id, string idAtualizado, string itemAtualizado, int qtdItensAtualizada)
         {
             try
@@ -479,7 +475,7 @@ namespace projeto.Controllers
             }
         }
 
-        [HttpPut("AtualizarItem/{nome}")]
+        [HttpPut("Item/AtualizarItem/{nome}")]
         public IActionResult AtualizarItem(string nome, [Required] string novoNome, [Required] int novaQuantidade)
         {
             try
@@ -515,7 +511,7 @@ namespace projeto.Controllers
             }
         }
 
-        [HttpDelete("DeletarUsuario/{cpfUsuario}")]
+        [HttpDelete("Usuario/DeletarUsuario/{cpfUsuario}")]
         public IActionResult RemoverUsuario([Required] string cpfUsuario)
         {
             try
@@ -560,7 +556,7 @@ namespace projeto.Controllers
             }
         }
 
-        [HttpDelete("DeletarPedido/{Id}/{cpfUsuario}")]
+        [HttpDelete("Pedido/DeletarPedido/{Id}/{cpfUsuario}")]
         public IActionResult RemoverPedido([Required] string Id, [Required] string cpfUsuario)
         {
             try
@@ -627,7 +623,7 @@ namespace projeto.Controllers
             }
         }
 
-        [HttpDelete("DeletarItem/{nome}")]
+        [HttpDelete("Item/DeletarItem/{nome}")]
         public IActionResult RemoverItem([Required] string nome)
         {
             try
